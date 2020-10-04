@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" class="form-control" name="name" formControlName="Name"
+        [ngClass]="{'is-invalid':registerForm.get('Name').touched && registerForm.get('Name').invalid}">
+        <p class="invalid-feedback">Name can't be empty</p>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" name="email" formControlName="Email"
+        [ngClass]="{'is-invalid':registerForm.get('Email').touched && registerForm.get('Email').invalid}">
+        <span class="invalid-feedback">
+        <span *ngIf="registerForm.get('Email').hasError('required')">Please enter the field</span>
+        <span *ngIf="registerForm.get('Email').hasError('Email')">Please provide a valid Email</span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" class="form-control" name="username" formControlName="Username"
+        [ngClass]="{'is-invalid':registerForm.get('Username').touched && registerForm.get('Username').invalid}">
+        <p class="invalid-feedback">UserName can't be empty</p>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control" name="password" formControlName="Password"
+        [ngClass]="{'is-invalid':registerForm.get('Password').touched && registerForm.get('Password').invalid}">
+        <p class="invalid-feedback">
+            <span *ngIf="registerForm.get('Password').hasError('required')">Password can't be empty</span>
+            <span *ngIf="registerForm.get('Password').hasError('minLength')">Password should be 8 charcters min</span>
+            <span *ngIf="registerForm.get('Password').hasError('symbol')">Password must contain symbol '@'</span>
+        </p>
+    </div>
+    <div class="form-group">
+        <label for="confirmpassword">Confirm Password</label>
+        <input type="password" id="confirmpassword" class="form-control" name="confirmpassword" formControlName="ConfirmPassword"
+        [ngClass]="{'is-invalid':registerForm.get('ConfirmPassword').touched && registerForm.get('ConfirmPassword').invalid}">
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="registerForm.invalid">Register</button>
+</form>
+</div>
+</div>
